@@ -33,6 +33,10 @@
 			<Add option="-fexceptions" />
 		</Compiler>
 		<Unit filename="main.cpp" />
+		<Unit filename="myheader.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
+		<Unit filename="source.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>

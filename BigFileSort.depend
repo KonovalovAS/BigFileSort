@@ -1,0 +1,18 @@
+# depslib dependency file v1.0
+1652435881 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\main.cpp
+	"myheader.h"
+
+1652436023 d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\myheader.h
+	<iostream>
+	<fstream>
+	<stdio.h>
+	<random>
+	<time.h>
+	<thread>
+	<mutex>
+	<string>
+	<algorithm>
+
+1652435834 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
+	"myheader.h"
+
