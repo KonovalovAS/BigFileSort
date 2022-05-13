@@ -16,32 +16,6 @@
 
 using namespace std;
 
-class Solution{
-public:
-    Solution();
-    Solution(string problem_fname, string solution_fname);
-    void Multithread_calculation( int req_num_treads );
-
-    void demo();
-
-    void thread_run( FILE * problem );
-
-    // temporary public:
-    void merge_files(string fn1, string fn2);
-
-private:
-
-    mutex reading_mutex,
-          queue_mutex;
-    string prob,
-           sol;
-    int split_counter;
-    int threads_working;
-
-    void split_to_sorted(FILE * f_ptr, int n, string &common_name);
-
-};
-
 struct fpair{
     string fn1, fn2;
 };
@@ -62,3 +36,42 @@ private:
     string tmp_hold;
     queue<fpair> Q;
 };
+
+class Solution{
+public:
+    Solution();
+    Solution(string problem_fname, string solution_fname);
+    void Multithread_calculation( int req_num_treads );
+
+    string Results_fname();
+
+    void demo();
+
+    // temporary public:
+    // nothing
+    //string merge_files(string fn1, string fn2);
+
+private:
+
+    mutex reading_mutex,
+          queue_mutex;
+
+    string prob,
+           sol;
+    int split_counter;
+    int threads_working;
+
+    string merge_files(string fn1, string fn2);
+    void split_to_sorted(FILE * f_ptr, int n,
+                         string &common_name, my_queue& Mqueue);
+    void thread_run( FILE * problem, my_queue& Mqueue );
+
+};
+
+///=================
+
+void makefile(int n, string origin_name, uniform_int_distribution<> rnd, mt19937 u);
+
+void show(string name);
+
+void test_my_queue();
