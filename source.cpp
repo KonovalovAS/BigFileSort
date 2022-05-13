@@ -51,9 +51,9 @@ void Solution::split_to_sorted(FILE * f_ptr, int n,
         fwrite(read.data(),sizeof(read[0]),realsize,out);
         fclose(out);
 
-        queue_mutex.lock();
+        queue_mutex_1.lock();
         Mqueue.push(fname);
-        queue_mutex.unlock();
+        queue_mutex_1.unlock();
 
     }
 
@@ -70,17 +70,17 @@ void Solution::thread_run( FILE * problem, my_queue& Mqueue ){
 
         if( Mqueue.not_empty ){
 
-            queue_mutex.lock();
+            queue_mutex_2.lock();
             fpair fp = Mqueue.extract_front();
             threads_working ++;
-            queue_mutex.unlock();
+            queue_mutex_2.unlock();
 
             string merged = merge_files(fp.fn1, fp.fn2);
 
-            queue_mutex.lock();
+            queue_mutex_2.lock();
             threads_working --;
             Mqueue.push(merged);
-            queue_mutex.unlock();
+            queue_mutex_2.unlock();
         }
         else if(threads_working>0)
             this_thread::sleep_for(chrono::milliseconds(100));

@@ -54,7 +54,8 @@ public:
 private:
 
     mutex reading_mutex,
-          queue_mutex;
+          queue_mutex_1,
+          queue_mutex_2;
 
     string prob,
            sol;
