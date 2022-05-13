@@ -66,17 +66,26 @@ void Solution::thread_run( FILE * problem, my_queue& Mqueue ){
     split_to_sorted( problem, n_in_splitted, common_parts_name_prefix, Mqueue );
 
 
-    while(Mqueue.not_empty){
+    while(true){
 
-        queue_mutex.lock();
-        fpair fp = Mqueue.extract_front();
-        queue_mutex.unlock();
+        if( Mqueue.not_empty ){
 
-        string merged = merge_files(fp.fn1, fp.fn2);
+            queue_mutex.lock();
+            fpair fp = Mqueue.extract_front();
+            threads_working ++;
+            queue_mutex.unlock();
 
-        queue_mutex.lock();
-        Mqueue.push(merged);
-        queue_mutex.unlock();
+            string merged = merge_files(fp.fn1, fp.fn2);
+
+            queue_mutex.lock();
+            threads_working --;
+            Mqueue.push(merged);
+            queue_mutex.unlock();
+        }
+        else if(threads_working>0)
+            this_thread::sleep_for(chrono::milliseconds(100));
+        else
+            break;
     }
 
 }
@@ -221,7 +230,7 @@ void makefile(int n, string origin_name, uniform_int_distribution<> rnd, mt19937
 void show(string name){
     FILE * f = fopen(name.c_str(),"rb");
 
-    int n = 1000;
+    int n = 10000;
     int * read = new int[n];
     int realsize = fread(read,sizeof(int),n,f);
     cout << "Show " << name << ":\n\trealsize: " << realsize << "\n";
