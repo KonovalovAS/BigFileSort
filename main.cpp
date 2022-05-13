@@ -1,33 +1,22 @@
 #include "myheader.h"
 
-void makefile(int n, string origin_name, uniform_int_distribution<> rnd, mt19937 u){
-
-    FILE * f = fopen(origin_name.c_str(),"wb");
-    for(int i=0; i<n; i++){
-        int it = rnd(u);
-        cout << it << " ";
-        fwrite(&it,sizeof(int),1, f);
-    }
-    cout << "\n";
-    fclose(f);
-}
-
 int main(){
 
     mt19937 Mersenne = mt19937( static_cast<mt19937::result_type>(time(nullptr)) );
-    uniform_int_distribution<> rnd{0,500};
+    uniform_int_distribution<> rnd{0,1000};
 
     // generating a file to work with
-    int N(24),n(10);
-    string origin_name = "data";
+    int N(1000);
+    string origin_name = "data",
+           res_name = "res";
     makefile(N, origin_name, rnd, Mersenne);
 
-    string res = "res";
-    //Solution S();
-    Solution Sol(origin_name,res);
-    Sol.Multithread_calculation();
+    // solving
+    Solution Sol(origin_name,res_name);
+    Sol.Multithread_calculation(10);
 
-    Sol.demo();
+    show( res_name );
+    cout << "The result is in the file:\n\t" << res_name;
 
     return 0;
 }
