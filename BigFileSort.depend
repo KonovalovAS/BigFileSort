@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1652459869 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\main.cpp
+1652461825 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\main.cpp
 	"myheader.h"
 
 1652460037 d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\myheader.h
@@ -16,6 +16,6 @@
 	<vector>
 	<queue>
 
-1652460121 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
+1652461838 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
 	"myheader.h"
 
