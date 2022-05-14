@@ -41,7 +41,7 @@ class Solution{
 public:
     Solution();
     Solution(string problem_fname, string solution_fname);
-    void Multithread_calculation( int req_num_treads );
+    void Multithread_calculation( int req_num_treads, int init_split_size );
 
     string Results_fname();
 
@@ -65,7 +65,7 @@ private:
     string merge_files(string fn1, string fn2);
     void split_to_sorted(FILE * f_ptr, int n,
                          string &common_name, my_queue& Mqueue);
-    void thread_run( FILE * problem, my_queue& Mqueue );
+    void thread_run( FILE * problem, my_queue& Mqueue, int init_split_size );
 
 };
 

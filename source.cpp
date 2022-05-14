@@ -59,10 +59,10 @@ void Solution::split_to_sorted(FILE * f_ptr, int n,
 
 }
 
-void Solution::thread_run( FILE * problem, my_queue& Mqueue ){
+void Solution::thread_run( FILE * problem, my_queue& Mqueue, int init_split_size ){
 
     string common_parts_name_prefix = "part_";
-    int n_in_splitted = 10;
+    int n_in_splitted = init_split_size;
     split_to_sorted( problem, n_in_splitted, common_parts_name_prefix, Mqueue );
 
 
@@ -90,7 +90,7 @@ void Solution::thread_run( FILE * problem, my_queue& Mqueue ){
 
 }
 
-void Solution::Multithread_calculation( int req_num_treads ){
+void Solution::Multithread_calculation( int req_num_treads, int init_split_size ){
 
 	int max_threads = thread::hardware_concurrency();
 	int num_threads = min(max_threads,req_num_treads);
@@ -104,7 +104,7 @@ void Solution::Multithread_calculation( int req_num_treads ){
     // threads begin their work
 	vector<thread> threads(num_threads-1);
     for(int i=0; i<num_threads-1; i++)
-          threads[i] = thread(&Solution::thread_run, this, ref(problem), ref(MyQueue));
+          threads[i] = thread(&Solution::thread_run, this, ref(problem), ref(MyQueue), ref(init_split_size));
 
     for_each(threads.begin(), threads.end(), mem_fn(&thread::join));
     // and they are done by now
@@ -238,6 +238,8 @@ void show(string name){
     for(int i=0; i<realsize; i++)
         cout << read[i] << " ";
     cout << "\n";
+
+    delete [] read;
 
     fclose(f);
 }

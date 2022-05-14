@@ -2,7 +2,7 @@
 1652461882 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\main.cpp
 	"myheader.h"
 
-1652463536 d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\myheader.h
+1652509980 d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\myheader.h
 	<iostream>
 	<fstream>
 	<stdio.h>
@@ -16,6 +16,6 @@
 	<vector>
 	<queue>
 
-1652461838 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
+1652509968 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
 	"myheader.h"
 
