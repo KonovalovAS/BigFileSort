@@ -42,14 +42,7 @@ public:
     Solution();
     Solution(string problem_fname, string solution_fname);
     void Multithread_calculation( int req_num_treads, int init_split_size );
-
     string Results_fname();
-
-    void demo();
-
-    // temporary public:
-    // nothing
-    //string merge_files(string fn1, string fn2);
 
 private:
 

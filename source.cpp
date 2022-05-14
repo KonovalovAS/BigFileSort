@@ -160,27 +160,6 @@ string Solution::merge_files(string fn1, string fn2){
     return outfname;
 }
 
-void Solution::demo(){
-    // checking the contents of new files
-    cout << "\n\nDEMO\n\n";
-    for(int i=1; i<split_counter+1; i++){
-        string fn = "part_" + to_string(i);
-        FILE * f_test = fopen(fn.c_str(),"rb");
-
-        cout<<i<<"\n";
-        int * read = new int[10];
-        int num = fread(read,sizeof(int),10,f_test);
-
-        for(int i=0; i<num; i++)
-            cout << read[i] << " ";
-
-        cout<<"\n";
-        fclose(f_test);
-
-        delete [] read;
-    }
-}
-
 /// my_queue
 
 my_queue::my_queue(){
@@ -244,49 +223,4 @@ void show(string name){
     fclose(f);
 }
 
-void test_my_queue(){
-    string a("a"), b("b"), c("c"), d("d"), e("e");
-
-    my_queue MQ;
-
-    cout << MQ.not_empty << " " << MQ.expecting << " "
-         << MQ.get_remains() << "\n";
-
-    MQ.push(a);
-
-    cout << MQ.not_empty << " " << MQ.expecting << " "
-         << MQ.get_remains() << "\n";
-
-    MQ.push(b);
-
-    cout << MQ.not_empty << " " << MQ.expecting << " "
-         << MQ.get_remains() << "\n";
-
-    MQ.push(c);
-
-    cout << MQ.not_empty << " " << MQ.expecting << " "
-         << MQ.get_remains() << "\n";
-
-    fpair gf = MQ.extract_front();
-    cout << gf.fn1 << " " << gf.fn2 << "\n";
-
-    MQ.push(d);
-
-    cout << MQ.not_empty << " " << MQ.expecting << " "
-         << MQ.get_remains() << "\n";
-
-    gf = MQ.extract_front();
-    cout << gf.fn1 << " " << gf.fn2 << "\n";
-
-    cout << MQ.not_empty << " " << MQ.expecting << " "
-         << MQ.get_remains() << "\n";
-}
-
-
-
-
-
-
-
-
-
+//
