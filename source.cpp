@@ -64,7 +64,7 @@ void Solution::thread_run( FILE * problem, my_queue& Mqueue, int init_split_size
     string common_parts_name_prefix = "part_";
     int n_in_splitted = init_split_size;
     split_to_sorted( problem, n_in_splitted, common_parts_name_prefix, Mqueue );
-
+    //cout << "The big guy is splitted!\n";
 
     while(true){
 
@@ -124,6 +124,8 @@ string Solution::merge_files(string fn1, string fn2){
     string outfname = ( *(fn1.end()-1)=='_' ) ?
                         string(fn1.begin(),fn1.end()-1) : (fn1 + "_");
     FILE * outf = fopen(outfname.c_str(),"wb");
+
+    //cout << "\t" << fn1 << " + " << fn2 << " into " << outfname << "\n";
 
     int i1, i2;
     int s_i1 = fread(&i1,sizeof(int),1,f1),
