@@ -33,6 +33,7 @@ public:
 
 private:
 
+    mutex push_lock;
     string tmp_hold;
     queue<fpair> Q;
 };
@@ -47,8 +48,7 @@ public:
 private:
 
     mutex reading_mutex,
-          queue_mutex_1,
-          queue_mutex_2;
+          queue_mutex;
 
     string prob,
            sol;
@@ -68,4 +68,4 @@ void makefile(int n, string origin_name, uniform_int_distribution<> rnd, mt19937
 
 void show(string name);
 
-void test_my_queue();
+//

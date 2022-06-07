@@ -51,10 +51,7 @@ void Solution::split_to_sorted(FILE * f_ptr, int n,
         fwrite(read.data(),sizeof(read[0]),realsize,out);
         fclose(out);
 
-        queue_mutex_1.lock();
         Mqueue.push(fname);
-        queue_mutex_1.unlock();
-
     }
 
 }
@@ -70,17 +67,19 @@ void Solution::thread_run( FILE * problem, my_queue& Mqueue, int init_split_size
 
         if( Mqueue.not_empty ){
 
-            queue_mutex_2.lock();
+            queue_mutex.lock();
+            if( !(Mqueue.not_empty) ){
+                queue_mutex.unlock();
+                continue;
+            }
             fpair fp = Mqueue.extract_front();
             threads_working ++;
-            queue_mutex_2.unlock();
+            queue_mutex.unlock();
 
             string merged = merge_files(fp.fn1, fp.fn2);
 
-            queue_mutex_2.lock();
             threads_working --;
             Mqueue.push(merged);
-            queue_mutex_2.unlock();
         }
         else if(threads_working>0)
             this_thread::sleep_for(chrono::milliseconds(100));
@@ -100,7 +99,7 @@ void Solution::Multithread_calculation( int req_num_treads, int init_split_size 
     FILE * problem = fopen(prob.c_str(),"rb");
     my_queue MyQueue;
 
-    cout << "The process is on\n";
+    cout << "Threads_num = " << num_threads-1 << "\nThe process is on!\n";
     // threads begin their work
 	vector<thread> threads(num_threads-1);
     for(int i=0; i<num_threads-1; i++)
@@ -170,6 +169,7 @@ my_queue::my_queue(){
 }
 
 void my_queue::push( string& s ){
+    push_lock.lock();
     if(expecting){
         Q.push( {tmp_hold, s} );
         expecting = false;
@@ -179,6 +179,7 @@ void my_queue::push( string& s ){
         tmp_hold = s;
         expecting = true;
     }
+    push_lock.unlock();
 }
 
 fpair my_queue::extract_front(){

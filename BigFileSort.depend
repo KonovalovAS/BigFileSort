@@ -1,8 +1,8 @@
 # depslib dependency file v1.0
-1652628785 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\main.cpp
+1653037076 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\main.cpp
 	"myheader.h"
 
-1652511853 d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\myheader.h
+1653041183 d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\myheader.h
 	<iostream>
 	<fstream>
 	<stdio.h>
@@ -16,6 +16,6 @@
 	<vector>
 	<queue>
 
-1652629789 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
+1653035294 source:d:\000 00 educ\ecm\ecm 4 сем\0proj\bigfilesort\source.cpp
 	"myheader.h"
 
